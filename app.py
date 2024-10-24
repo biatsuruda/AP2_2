@@ -6,7 +6,7 @@ professores = []
 turmas = []
 alunos = []
 
-# Rota para adicionar um professor
+
 @app.route('/professores', methods=['POST'])
 def add_professor():
     data = request.json
@@ -20,7 +20,7 @@ def add_professor():
     professores.append(novo_professor)
     return jsonify({'id': novo_professor['id']}), 201
 
-# Rota para adicionar uma turma
+
 @app.route('/turmas', methods=['POST'])
 def add_turma():
     data = request.json
@@ -33,7 +33,7 @@ def add_turma():
     turmas.append(nova_turma)
     return jsonify({'id': nova_turma['id']}), 201
 
-# Rota para adicionar um aluno
+
 @app.route('/alunos', methods=['POST'])
 def add_aluno():
     data = request.json
@@ -51,22 +51,22 @@ def add_aluno():
     alunos.append(novo_aluno)
     return jsonify({'id': novo_aluno['id']}), 201
 
-# Rota para listar professores
+
 @app.route('/professores', methods=['GET'])
 def get_professores():
     return jsonify(professores)
 
-# Rota para listar turmas
+
 @app.route('/turmas', methods=['GET'])
 def get_turmas():
     return jsonify(turmas)
 
-# Rota para listar alunos
+
 @app.route('/alunos', methods=['GET'])
 def get_alunos():
     return jsonify(alunos)
 
-# Rota para adicionar um usuário
+
 @app.route('/users', methods=['POST'])
 def add_user():
     data = request.json
@@ -79,15 +79,13 @@ def add_user():
     
     return jsonify({'id': new_user.id, 'username': new_user.username}), 201
 
-# Rota para listar todos os usuários
 @app.route('/users', methods=['GET'])
 def get_users():
     users = User.query.all()
     user_list = [{'id': user.id, 'username': user.username} for user in users]
     return jsonify(user_list)
 
-# Suas rotas aqui...
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()  # Cria todas as tabelas definidas nos modelos
-    app.run(debug=True, port=8000)  # Adicione o parâmetro port=8000
+        db.create_all() 
+    app.run(debug=True, port=8000) 
